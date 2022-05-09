@@ -127,246 +127,33 @@ def load_data(inputPath,variables,criteria):
             sampleNames=key
             subdir_name = 'Signal'
             fileNames = [
-            # 'GluGluToHHTo2G4Q_node_cHHH1_2017'
-            # 'GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_2017'
-            'GluGluToHHTo2G4Q_node_1_2017',
-            'GluGluToHHTo2G4Q_node_2_2017',
-            # 'GluGluToHHTo2G4Q_node_3_2017',
-            # 'GluGluToHHTo2G4Q_node_4_2017',
-            # 'GluGluToHHTo2G4Q_node_5_2017',
-            # 'GluGluToHHTo2G4Q_node_6_2017',
-            # 'GluGluToHHTo2G4Q_node_7_2017',
-            # 'GluGluToHHTo2G4Q_node_8_2017',
-            # 'GluGluToHHTo2G4Q_node_9_2017',
-            # 'GluGluToHHTo2G4Q_node_10_2017',
-            # 'GluGluToHHTo2G4Q_node_11_2017',
-            # 'GluGluToHHTo2G4Q_node_12_2017',
-            # 'GluGluToHHTo2G4Q_node_SM_2017',
+            'output_sig125'
             ]
             target=1
         else:
             sampleNames = key
             subdir_name = 'Backgrounds'
+            # contain two trees pp&pf+ff
             fileNames = [
-                # FH File Names
-                'DiPhotonJetsBox_MGG-80toInf_13TeV',
-
-                'TTGG_0Jets_TuneCP5_13TeV',
-                'TTGJets_TuneCP5_13TeV',
-
-                # 'ttHJetToGG_M125_13TeV',
-                # 'VBFHToGG_M125_13TeV',
-                # 'GluGluHToGG_M125_TuneCP5_13TeV',
-                # 'VHToGG_M125_13TeV',
-
-                # 'GluGluToHHTo2B2G_node_cHHH1_2017',
-                'datadrivenQCD_v2'
+            'New_DataDriven_QCD_SFs_sEoEWgt_2DpTWgt',
+            'New_pp'
             ]
             target=0
 
         for filen in fileNames:
-            if 'GluGluToHHTo2B2G_node_cHHH1_2017' in filen:
-                treename=['GluGluToHHTo2B2G_node_cHHH1_13TeV_HHWWggTag_1']
-                process_ID = 'bbgg'
-            if 'GluGluToHHTo2G4Q_node_cHHH1_2017' in filen:
-                treename=['GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1']
-                process_ID = 'HH'
-            elif 'GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_2017' in filen:
-                treename=['GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1']
-                process_ID = 'HH'
-            elif 'GluGluToHHTo2G4Q_node_1_2017' in filen:
-                treename=['GluGluToHHTo2G4Q_node_1_13TeV_HHWWggTag_1']
-                process_ID = 'HH'
-            elif 'GluGluToHHTo2G4Q_node_2_2017' in filen:
-                treename=['GluGluToHHTo2G4Q_node_2_13TeV_HHWWggTag_1']
-                process_ID = 'HH'
-            elif 'GluGluToHHTo2G4Q_node_3_2017' in filen:
-                treename=['GluGluToHHTo2G4Q_node_3_13TeV_HHWWggTag_1']
-                process_ID = 'HH'
-            elif 'GluGluToHHTo2G4Q_node_4_2017' in filen:
-                treename=['GluGluToHHTo2G4Q_node_4_13TeV_HHWWggTag_1']
-                process_ID = 'HH'
-            elif 'GluGluToHHTo2G4Q_node_5_2017' in filen:
-                treename=['GluGluToHHTo2G4Q_node_5_13TeV_HHWWggTag_1']
-                process_ID = 'HH'
-            elif 'GluGluToHHTo2G4Q_node_6_2017' in filen:
-                treename=['GluGluToHHTo2G4Q_node_6_13TeV_HHWWggTag_1']
-                process_ID = 'HH'
-            elif 'GluGluToHHTo2G4Q_node_7_2017' in filen:
-                treename=['GluGluToHHTo2G4Q_node_7_13TeV_HHWWggTag_1']
-                process_ID = 'HH'
-            elif 'GluGluToHHTo2G4Q_node_8_2017' in filen:
-                treename=['GluGluToHHTo2G4Q_node_8_13TeV_HHWWggTag_1']
-                process_ID = 'HH'
-            elif 'GluGluToHHTo2G4Q_node_9_2017' in filen:
-                treename=['GluGluToHHTo2G4Q_node_9_13TeV_HHWWggTag_1']
-                process_ID = 'HH'
-            elif 'GluGluToHHTo2G4Q_node_10_2017' in filen:
-                treename=['GluGluToHHTo2G4Q_node_10_13TeV_HHWWggTag_1']
-                process_ID = 'HH'
-            elif 'GluGluToHHTo2G4Q_node_11_2017' in filen:
-                treename=['GluGluToHHTo2G4Q_node_11_13TeV_HHWWggTag_1']
-                process_ID = 'HH'
-            elif 'GluGluToHHTo2G4Q_node_12_2017' in filen:
-                treename=['GluGluToHHTo2G4Q_node_12_13TeV_HHWWggTag_1']
-                process_ID = 'HH'
-            elif 'GluGluToHHTo2G4Q_node_SM_2017' in filen:
-                treename=['GluGluToHHTo2G4Q_node_SM_13TeV_HHWWggTag_1']
-                process_ID = 'HH'
-            elif 'GluGluToHHTo2G4Q_node_cHHH1_2018' in filen:
-                treename=['GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1']
-                process_ID = 'HH'
-            elif 'datadriven' in filen:
-                treename=['Data_13TeV_HHWWggTag_1']
-                process_ID = 'QCD'
-            elif 'GluGluHToGG' in filen:
-                treename=['ggh_125_13TeV_HHWWggTag_1']
-                process_ID = 'Hgg'
-            elif 'VBFHToGG' in filen:
-                treename=['vbf_125_13TeV_HHWWggTag_1']
-                process_ID = 'Hgg'
-            elif 'VHToGG' in filen:
-                treename=['wzh_125_13TeV_HHWWggTag_1']
-                process_ID = 'Hgg'
-            elif 'ttHJetToGG' in filen:
-                treename=['tth_125_13TeV_HHWWggTag_1']
-                process_ID = 'Hgg'
-            elif 'DiPhotonJetsBox_M40_80' in filen:
-                treename=['DiPhotonJetsBox_M40_80_Sherpa_13TeV_HHWWggTag_1',
+            if 'output_sig125' in filen:
+                treename=['tagsDumper/trees/ggh_125_13TeV_UntaggedTag']
+                process_ID = "ggh"
+            # consider pp & pf+ff to be different bkgs
+            elif 'New_DataDriven_QCD_SFs_sEoEWgt_2DpTWgt' in filen:
+                treename=['DataDriven_QCD',
                 ]
-                process_ID = 'DiPhoton'
-            elif 'DiPhotonJetsBox_MGG-80toInf' in filen:
-                treename=['DiPhotonJetsBox_MGG_80toInf_13TeV_Sherpa_13TeV_HHWWggTag_1',
+                process_ID = 'QCD_pfff'
+            elif 'New_pp' in filen:
+                treename=['pp',
                 ]
-                process_ID = 'DiPhoton'
-            elif 'GJet_Pt-20to40' in filen:
-                treename=['GJet_Pt_20to40_DoubleEMEnriched_MGG_80toInf_TuneCP5_13TeV_Pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'GJet'
-            elif 'GJet_Pt-20toInf' in filen:
-                treename=['GJet_Pt_20toInf_DoubleEMEnriched_MGG_40to80_TuneCP5_13TeV_Pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'GJet'
-            elif 'GJet_Pt-40toInf' in filen:
-                treename=['GJet_Pt_40toInf_DoubleEMEnriched_MGG_80toInf_TuneCP5_13TeV_Pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'GJet'
-            elif 'QCD_Pt-30to40' in filen:
-                treename=['QCD_Pt_30to40_DoubleEMEnriched_MGG_80toInf_TuneCP5_13TeV_Pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'QCD'
-            elif 'QCD_Pt-30toInf' in filen:
-                treename=['QCD_Pt_30toInf_DoubleEMEnriched_MGG_40to80_TuneCP5_13TeV_Pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'QCD'
-            elif 'QCD_Pt-40toInf' in filen:
-                treename=['QCD_Pt_40toInf_DoubleEMEnriched_MGG_80toInf_TuneCP5_13TeV_Pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'QCD'
-            elif 'DYJetsToLL_M-50' in filen:
-                treename=['DYJetsToLL_M_50_TuneCP5_13TeV_amcatnloFXFX_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'DY'
-            elif 'TTGG_0Jets' in filen:
-                treename=['TTGG_0Jets_TuneCP5_13TeV_amcatnlo_madspin_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'TTGsJets'
-            elif 'TTGJets_TuneCP5' in filen:
-                treename=['TTGJets_TuneCP5_13TeV_amcatnloFXFX_madspin_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'TTGsJets'
-            elif 'TTJets_HT-600to800' in filen:
-                treename=['TTJets_HT_600to800_TuneCP5_13TeV_madgraphMLM_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'TTGsJets'
-            elif 'TTJets_HT-800to1200' in filen:
-                treename=['TTJets_HT_800to1200_TuneCP5_13TeV_madgraphMLM_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'TTGsJets'
-            elif 'TTJets_HT-1200to2500' in filen:
-                treename=['TTJets_HT_1200to2500_TuneCP5_13TeV_madgraphMLM_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'TTGsJets'
-            elif 'TTJets_HT-2500toInf' in filen:
-                treename=['TTJets_HT_2500toInf_TuneCP5_13TeV_madgraphMLM_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'TTGsJets'
-            elif 'ttWJets' in filen:
-                treename=['ttWJets_TuneCP5_13TeV_madgraphMLM_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'TTGsJets'
-            elif 'TTJets_TuneCP5' in filen:
-                treename=['TTJets_TuneCP5_13TeV_amcatnloFXFX_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'TTGsJets'
-            elif 'W1JetsToLNu_LHEWpT_0-50' in filen:
-                treename=['W1JetsToLNu_LHEWpT_0_50_TuneCP5_13TeV_amcnloFXFX_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WGsJets'
-            elif 'W1JetsToLNu_LHEWpT_50-150' in filen:
-                treename=['W1JetsToLNu_LHEWpT_50_150_TuneCP5_13TeV_amcnloFXFX_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WGsJets'
-            elif 'W1JetsToLNu_LHEWpT_150-250' in filen:
-                treename=['W1JetsToLNu_LHEWpT_150_250_TuneCP5_13TeV_amcnloFXFX_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WGsJets'
-            elif 'W1JetsToLNu_LHEWpT_250-400' in filen:
-                treename=['W1JetsToLNu_LHEWpT_250_400_TuneCP5_13TeV_amcnloFXFX_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WGsJets'
-            elif 'W1JetsToLNu_LHEWpT_400-inf' in filen:
-                treename=['W1JetsToLNu_LHEWpT_400_inf_TuneCP5_13TeV_amcnloFXFX_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WGsJets'
-            elif 'W2JetsToLNu_LHEWpT_0-50' in filen:
-                treename=['W2JetsToLNu_LHEWpT_0_50_TuneCP5_13TeV_amcnloFXFX_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WGsJets'
-            elif 'W2JetsToLNu_LHEWpT_50-150' in filen:
-                treename=['W2JetsToLNu_LHEWpT_50_150_TuneCP5_13TeV_amcnloFXFX_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WGsJets'
-            elif 'W2JetsToLNu_LHEWpT_150-250' in filen:
-                treename=['W2JetsToLNu_LHEWpT_150_250_TuneCP5_13TeV_amcnloFXFX_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WGsJets'
-            elif 'W2JetsToLNu_LHEWpT_250-400' in filen:
-                treename=['W2JetsToLNu_LHEWpT_250_400_TuneCP5_13TeV_amcnloFXFX_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WGsJets'
-            elif 'W2JetsToLNu_LHEWpT_400-inf' in filen:
-                treename=['W2JetsToLNu_LHEWpT_400_inf_TuneCP5_13TeV_amcnloFXFX_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WGsJets'
-            elif 'W3JetsToLNu' in filen:
-                treename=['W3JetsToLNu_TuneCP5_13TeV_madgraphMLM_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WGsJets'
-            elif 'W4JetsToLNu' in filen:
-                treename=['W4JetsToLNu_TuneCP5_13TeV_madgraphMLM_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WGsJets'
-            elif 'WGGJets' in filen:
-                treename=['WGGJets_TuneCP5_13TeV_madgraphMLM_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WGsJets'
-            elif 'WGJJToLNuGJJ_EWK' in filen:
-                treename=['WGJJToLNuGJJ_EWK_aQGC_FS_FM_TuneCP5_13TeV_madgraph_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WGsJets'
-            elif 'WGJJToLNu_EWK_QCD' in filen:
-                treename=['WGJJToLNu_EWK_QCD_TuneCP5_13TeV_madgraph_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WGsJets'
-            elif 'WWTo1L1Nu2Q' in filen:
-                treename=['WWTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WW'
-            elif 'WW_TuneCP5' in filen:
-                treename=['WW_TuneCP5_13TeV_pythia8_13TeV_HHWWggTag_1',
-                ]
-                process_ID = 'WW'
+                process_ID = 'QCD_pp'
+
 
             fileName = os.path.join(subdir_name,filen)
             filename_fullpath = inputPath+"/"+fileName+".root"
@@ -374,12 +161,12 @@ def load_data(inputPath,variables,criteria):
             tfile = ROOT.TFile(filename_fullpath)
             if 'HH' in key:
                 for tname in treename:
-                    ch_0 = tfile.Get("tagsDumper/trees/"+tname)
+                    ch_0 = tfile.Get(tname)
                     if ch_0 is not None :
                         criteria_tmp = criteria
                         #if process_ID == "HH": criteria_tmp = criteria + " && (event%2!=0)"
                         # Create dataframe for ttree
-                        chunk_arr = tree2array(tree=ch_0, branches=my_cols_list[:-5], selection=criteria_tmp)
+                        chunk_arr = tree2array(tree=ch_0, branches=my_cols_list[:-6], selection=criteria_tmp) #attention: change to -6 since Hgg don't have weight_NLO_SM
                         #chunk_arr = tree2array(tree=ch_0, branches=my_cols_list[:-5], selection=criteria, start=0, stop=500)
                         # This dataframe will be a chunk of the final total dataframe used in training
                         chunk_df = pd.DataFrame(chunk_arr, columns=my_cols_list)
@@ -388,7 +175,8 @@ def load_data(inputPath,variables,criteria):
                         chunk_df['key']=key
                         chunk_df['target']=target
                         chunk_df['weight']=chunk_df["weight"]
-                        chunk_df['weight_NLO_SM']=chunk_df['weight_NLO_SM']
+                        # chunk_df['weight_NLO_SM']=chunk_df['weight_NLO_SM']
+                        chunk_df['weight_NLO_SM']=1.0
                         chunk_df['process_ID']=process_ID
                         chunk_df['classweight']=1.0
                         chunk_df['unweighted'] = 1.0
@@ -399,7 +187,7 @@ def load_data(inputPath,variables,criteria):
                     ch_0.Delete()
             else:
                 for tname in treename:
-                    ch_0 = tfile.Get("tagsDumper/trees/"+tname)
+                    ch_0 = tfile.Get(tname)
                     if ch_0 is not None :
                         criteria_tmp = criteria
                         #if process_ID == "HH": criteria_tmp = criteria + " && (event%2!=0)"
@@ -956,7 +744,8 @@ def main():
     plots_dir = os.path.join(output_directory,'plots/')
     input_var_jsonFile = open(args.json,'r')
     # selection_criteria = '( (Leading_Photon_pt/CMS_hgg_mass) > 1/3. && (Subleading_Photon_pt/CMS_hgg_mass) > 1/4. && Leading_Photon_MVA>-0.7 && Subleading_Photon_MVA>-0.7 && SumTwoMaxBjets<0.6186)'
-    selection_criteria = '( (Leading_Photon_pt/CMS_hgg_mass) > 1/3. && (Subleading_Photon_pt/CMS_hgg_mass) > 1/4. && Leading_Photon_MVA>-0.7 && Subleading_Photon_MVA>-0.7)'
+    # selection_criteria = '( (Leading_Photon_pt/CMS_hgg_mass) > 1/3. && (Subleading_Photon_pt/CMS_hgg_mass) > 1/4. && Leading_Photon_MVA>-0.7 && Subleading_Photon_MVA>-0.7)'
+    selection_criteria = '( (leadptom) > 1/3. && (subleadptom) > 1/4. && leadmva>-0.9 && subleadmva>-0.9)'
     # selection_criteria = '( (Leading_Photon_pt/CMS_hgg_mass) > 1/3. && (Subleading_Photon_pt/CMS_hgg_mass) > 1/4. && Leading_Photon_MVA>-0.7 && Subleading_Photon_MVA>-0.7 && New_pTBasedSel_WW_mass < 200)'
 
     # Load Variables from .json
@@ -1054,36 +843,41 @@ def main():
     print('<train-DNN> Validation dataset shape: ', valdataset.shape)
 
     # Event weights
-    weights_for_HH = traindataset.loc[traindataset['process_ID']=='HH', 'weight']
-    weights_for_HH_NLO = traindataset.loc[traindataset['process_ID']=='HH', 'weight_NLO_SM']
-    weights_for_Hgg = traindataset.loc[traindataset['process_ID']=='Hgg', 'weight']
-    weights_for_DiPhoton = traindataset.loc[traindataset['process_ID']=='DiPhoton', 'weight']
-    weights_for_QCD = traindataset.loc[traindataset['process_ID']=='QCD', 'weight']
-    weights_for_TTGsJets = traindataset.loc[traindataset['process_ID']=='TTGsJets', 'weight']
-    weights_for_bbgg = traindataset.loc[traindataset['process_ID']=='bbgg', 'weight']
+    weights_for_HH = traindataset.loc[traindataset['process_ID']=='ggh', 'weight']
+    # weights_for_HH_NLO = traindataset.loc[traindataset['process_ID']=='HH', 'weight_NLO_SM']
+    # weights_for_Hgg = traindataset.loc[traindataset['process_ID']=='Hgg', 'weight']
+    # weights_for_DiPhoton = traindataset.loc[traindataset['process_ID']=='DiPhoton', 'weight']
+    weights_for_QCD_pfff = traindataset.loc[traindataset['process_ID']=='QCD_pfff', 'weight']
+    weights_for_QCD_pp = traindataset.loc[traindataset['process_ID']=='QCD_pp', 'weight']
+    # weights_for_TTGsJets = traindataset.loc[traindataset['process_ID']=='TTGsJets', 'weight']
+    # weights_for_bbgg = traindataset.loc[traindataset['process_ID']=='bbgg', 'weight']
 
     HHsum_weighted= sum(weights_for_HH)
-    Hggsum_weighted= sum(weights_for_Hgg)
-    DiPhotonsum_weighted= sum(weights_for_DiPhoton)
-    QCDsum_weighted= sum(weights_for_QCD)
-    TTGsJetssum_weighted= sum(weights_for_TTGsJets)
-    bbggsum_weighted= sum(weights_for_bbgg)
-    bckgsum_weighted = Hggsum_weighted + DiPhotonsum_weighted +  QCDsum_weighted + TTGsJetssum_weighted + bbggsum_weighted
+    # Hggsum_weighted= sum(weights_for_Hgg)
+    # DiPhotonsum_weighted= sum(weights_for_DiPhoton)
+    QCD_pfff_sum_weighted= sum(weights_for_QCD_pfff)
+    QCD_pp_sum_weighted= sum(weights_for_QCD_pp)
+    # TTGsJetssum_weighted= sum(weights_for_TTGsJets)
+    # bbggsum_weighted= sum(weights_for_bbgg)
+    # bckgsum_weighted = Hggsum_weighted + DiPhotonsum_weighted +  QCDsum_weighted + TTGsJetssum_weighted + bbggsum_weighted
+    bckgsum_weighted = QCD_pfff_sum_weighted + QCD_pp_sum_weighted
 
-    nevents_for_HH = traindataset.loc[traindataset['process_ID']=='HH', 'unweighted']
-    nevents_for_Hgg = traindataset.loc[traindataset['process_ID']=='Hgg', 'unweighted']
-    nevents_for_DiPhoton = traindataset.loc[traindataset['process_ID']=='DiPhoton', 'unweighted']
-    nevents_for_QCD = traindataset.loc[traindataset['process_ID']=='QCD', 'unweighted']
-    nevents_for_TTGsJets = traindataset.loc[traindataset['process_ID']=='TTGsJets', 'unweighted']
-    nevents_for_bbgg = traindataset.loc[traindataset['process_ID']=='bbgg', 'unweighted']
+    nevents_for_HH = traindataset.loc[traindataset['process_ID']=='ggh', 'unweighted']
+    # nevents_for_Hgg = traindataset.loc[traindataset['process_ID']=='Hgg', 'unweighted']
+    # nevents_for_DiPhoton = traindataset.loc[traindataset['process_ID']=='DiPhoton', 'unweighted']
+    nevents_for_QCD_pfff = traindataset.loc[traindataset['process_ID']=='QCD_pfff', 'unweighted']
+    nevents_for_QCD_pp = traindataset.loc[traindataset['process_ID']=='QCD_pp', 'unweighted']
+    # nevents_for_TTGsJets = traindataset.loc[traindataset['process_ID']=='TTGsJets', 'unweighted']
+    # nevents_for_bbgg = traindataset.loc[traindataset['process_ID']=='bbgg', 'unweighted']
 
     HHsum_unweighted= sum(nevents_for_HH)
-    Hggsum_unweighted= sum(nevents_for_Hgg)
-    DiPhotonsum_unweighted= sum(nevents_for_DiPhoton)
-    QCDsum_unweighted= sum(nevents_for_QCD)
-    TTGsJetssum_unweighted= sum(nevents_for_TTGsJets)
-    bbggsum_unweighted= sum(nevents_for_bbgg)
-    bckgsum_unweighted = Hggsum_unweighted + DiPhotonsum_unweighted + QCDsum_unweighted + TTGsJetssum_unweighted + bbggsum_unweighted
+    # Hggsum_unweighted= sum(nevents_for_Hgg)
+    # DiPhotonsum_unweighted= sum(nevents_for_DiPhoton)
+    QCD_pfff_sum_unweighted= sum(nevents_for_QCD_pfff)
+    QCD_pp_sum_unweighted= sum(nevents_for_QCD_pp)
+    # TTGsJetssum_unweighted= sum(nevents_for_TTGsJets)
+    # bbggsum_unweighted= sum(nevents_for_bbgg)
+    bckgsum_unweighted = QCD_pfff_sum_unweighted + QCD_pp_sum_unweighted
 
     # HHsum_weighted = 2*HHsum_weighted
     # HHsum_unweighted = 2*HHsum_unweighted
@@ -1093,39 +887,43 @@ def main():
         print('#    BalanceYields: Print weight       #')
         print('#---------------------------------------')
         print('{0:22} = {1:11}'.format('HHsum_weighted' , HHsum_weighted))
-        print('{0:22} = {1:11}'.format('Hggsum_weighted' , Hggsum_weighted))
-        print('{0:22} = {1:11}'.format('DiPhotonsum_weighted', DiPhotonsum_weighted))
-        print('{0:22} = {1:11}'.format('QCDsum_weighted', QCDsum_weighted))
-        print('{0:22} = {1:11}'.format('TTGsJetssum_weighted', TTGsJetssum_weighted))
-        print('{0:22} = {1:11}'.format('bbggsum_weighted ',bbggsum_weighted))
+        # print('{0:22} = {1:11}'.format('Hggsum_weighted' , Hggsum_weighted))
+        # print('{0:22} = {1:11}'.format('DiPhotonsum_weighted', DiPhotonsum_weighted))
+        print('{0:22} = {1:11}'.format('QCD_pfff_sum_weighted', QCD_pfff_sum_weighted))
+        print('{0:22} = {1:11}'.format('QCD_pp_sum_weighted', QCD_pp_sum_weighted))
+        # print('{0:22} = {1:11}'.format('TTGsJetssum_weighted', TTGsJetssum_weighted))
+        # print('{0:22} = {1:11}'.format('bbggsum_weighted ',bbggsum_weighted))
         print('{0:22} = {1:11}'.format('bckgsum_weighted', bckgsum_weighted))
         print('New classweight: (HHsum_unweighted/HHsum_weighted) = ',(HHsum_unweighted/HHsum_weighted))
         print('#---------------------------------------')
-        traindataset.loc[traindataset['process_ID']=='HH', ['classweight']] = HHsum_unweighted/HHsum_weighted
-        traindataset.loc[traindataset['process_ID']=='Hgg', ['classweight']] = (HHsum_unweighted/bckgsum_weighted)
-        traindataset.loc[traindataset['process_ID']=='DiPhoton', ['classweight']] = (HHsum_unweighted/bckgsum_weighted)
-        traindataset.loc[traindataset['process_ID']=='QCD', ['classweight']] = (HHsum_unweighted/bckgsum_weighted)
-        traindataset.loc[traindataset['process_ID']=='TTGsJets', ['classweight']] = (HHsum_unweighted/bckgsum_weighted)
+        traindataset.loc[traindataset['process_ID']=='ggh', ['classweight']] = HHsum_unweighted/HHsum_weighted
+        # traindataset.loc[traindataset['process_ID']=='Hgg', ['classweight']] = (HHsum_unweighted/bckgsum_weighted)
+        # traindataset.loc[traindataset['process_ID']=='DiPhoton', ['classweight']] = (HHsum_unweighted/bckgsum_weighted)
+        traindataset.loc[traindataset['process_ID']=='QCD_pfff', ['classweight']] = (HHsum_unweighted/bckgsum_weighted)
+        traindataset.loc[traindataset['process_ID']=='QCD_pp', ['classweight']] = (HHsum_unweighted/bckgsum_weighted)
+        # traindataset.loc[traindataset['process_ID']=='TTGsJets', ['classweight']] = (HHsum_unweighted/bckgsum_weighted)
 
     if weights=='BalanceNonWeighted':
         print('#---------------------------------------')
         print('#    BalanceNonWeighted: Print weight  #')
         print('#---------------------------------------')
         print('HHsum_unweighted= ' , HHsum_unweighted)
-        print('Hggsum_unweighted= ' , Hggsum_unweighted)
-        print('DiPhotonsum_unweighted= ', DiPhotonsum_unweighted)
-        print('QCDsum_unweighted= ', QCDsum_unweighted)
-        print('TTGsJetssum_unweighted= ', TTGsJetssum_unweighted)
-        print('bbggsum_unweighted = ', bbggsum_unweighted)
+        # print('Hggsum_unweighted= ' , Hggsum_unweighted)
+        # print('DiPhotonsum_unweighted= ', DiPhotonsum_unweighted)
+        print('QCD_pfff_sum_unweighted= ', QCD_pfff_sum_unweighted)
+        print('QCD_pp_sum_unweighted= ', QCD_pp_sum_unweighted)
+        # print('TTGsJetssum_unweighted= ', TTGsJetssum_unweighted)
+        # print('bbggsum_unweighted = ', bbggsum_unweighted)
         print('bckgsum_unweighted= ', bckgsum_unweighted)
         print('#---------------------------------------')
 
-        traindataset.loc[traindataset['process_ID']=='HH', ['classweight']] = 1.
-        traindataset.loc[traindataset['process_ID']=='Hgg', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
-        traindataset.loc[traindataset['process_ID']=='DiPhoton', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
-        traindataset.loc[traindataset['process_ID']=='QCD', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
-        traindataset.loc[traindataset['process_ID']=='TTGsJets', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
-        traindataset.loc[traindataset['process_ID']=='bbgg', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
+        traindataset.loc[traindataset['process_ID']=='ggh', ['classweight']] = 1.
+        # traindataset.loc[traindataset['process_ID']=='Hgg', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
+        # traindataset.loc[traindataset['process_ID']=='DiPhoton', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
+        traindataset.loc[traindataset['process_ID']=='QCD_pfff', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
+        traindataset.loc[traindataset['process_ID']=='QCD_pp', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
+        # traindataset.loc[traindataset['process_ID']=='TTGsJets', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
+        # traindataset.loc[traindataset['process_ID']=='bbgg', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
 
     # exit()
 
