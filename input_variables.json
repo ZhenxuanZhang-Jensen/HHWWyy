@@ -8,6 +8,8 @@
   "CosPhi": "\"F\"",
   "vtxprob": "\"F\"",
   "sigmarv": "\"F\"",
-  "sigmawv": "\"F\""
+  "sigmawv": "\"F\"",
+  "weight": "\"F\"",
+  "Norm_SFs": "\"F\""
 
 }

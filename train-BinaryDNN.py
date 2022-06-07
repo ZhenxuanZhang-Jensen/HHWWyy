@@ -166,15 +166,15 @@ def load_data(inputPath,variables,criteria):
                         criteria_tmp = criteria
                         #if process_ID == "HH": criteria_tmp = criteria + " && (event%2!=0)"
                         # Create dataframe for ttree
-                        chunk_arr = tree2array(tree=ch_0, branches=my_cols_list[:-6], selection=criteria_tmp) #attention: change to -6 since Hgg don't have weight_NLO_SM
+                        chunk_arr = tree2array(tree=ch_0, branches=my_cols_list[0:11], selection=criteria_tmp) #attention: get all the variable including weight and norm_sfs
                         #chunk_arr = tree2array(tree=ch_0, branches=my_cols_list[:-5], selection=criteria, start=0, stop=500)
                         # This dataframe will be a chunk of the final total dataframe used in training
-                        chunk_df = pd.DataFrame(chunk_arr, columns=my_cols_list)
+                        chunk_df = pd.DataFrame(chunk_arr, columns=my_cols_list[0:10]) # attention use first 10 as the training variable in the input_variable json file ,the last two are about the weight
                         # Add values for the process defined columns.
                         # (i.e. the values that do not change for a given process).
                         chunk_df['key']=key
                         chunk_df['target']=target
-                        chunk_df['weight']=chunk_df["weight"]
+                        chunk_df['weight']=chunk_arr['weight']*(chunk_arr['vtxprob']*1./chunk_arr['sigmarv']+(1-chunk_arr['vtxprob'])*1./chunk_arr['sigmawv'])
                         # chunk_df['weight_NLO_SM']=chunk_df['weight_NLO_SM']
                         chunk_df['weight_NLO_SM']=1.0
                         chunk_df['process_ID']=process_ID
@@ -192,15 +192,15 @@ def load_data(inputPath,variables,criteria):
                         criteria_tmp = criteria
                         #if process_ID == "HH": criteria_tmp = criteria + " && (event%2!=0)"
                         # Create dataframe for ttree
-                        chunk_arr = tree2array(tree=ch_0, branches=my_cols_list[:-6], selection=criteria_tmp)
+                        chunk_arr = tree2array(tree=ch_0, branches=my_cols_list[::], selection=criteria_tmp)
                         #chunk_arr = tree2array(tree=ch_0, branches=my_cols_list[:-5], selection=criteria, start=0, stop=500)
                         # This dataframe will be a chunk of the final total dataframe used in training
-                        chunk_df = pd.DataFrame(chunk_arr, columns=my_cols_list)
+                        chunk_df = pd.DataFrame(chunk_arr, columns=my_cols_list[0:10])
                         # Add values for the process defined columns.
                         # (i.e. the values that do not change for a given process).
                         chunk_df['key']=key
                         chunk_df['target']=target
-                        chunk_df['weight']=chunk_df["weight"]
+                        chunk_df['weight']=chunk_arr["weight"] * chunk_arr['Norm_SFs']
                         chunk_df['weight_NLO_SM']=1.0
                         chunk_df['process_ID']=process_ID
                         chunk_df['classweight']=1.0
@@ -929,7 +929,7 @@ def main():
 
     # Remove column headers that aren't input variables
     # Remove column headers that aren't input variables
-    nonTrainingVariables = ['weight', 'weight_NLO_SM', 'kinWeight', 'unweighted', 'target', 'key', 'classweight', 'process_ID']
+    nonTrainingVariables = ['weight','Norm_SFs', 'weight_NLO_SM', 'kinWeight', 'unweighted', 'target', 'key', 'classweight', 'process_ID']
     # training_columns = column_headers[:-6]
     training_columns = [h for h in column_headers if h not in nonTrainingVariables]
     print('#---------------------------------------')
