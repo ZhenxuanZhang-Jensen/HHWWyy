@@ -745,7 +745,8 @@ def main():
     input_var_jsonFile = open(args.json,'r')
     # selection_criteria = '( (Leading_Photon_pt/CMS_hgg_mass) > 1/3. && (Subleading_Photon_pt/CMS_hgg_mass) > 1/4. && Leading_Photon_MVA>-0.7 && Subleading_Photon_MVA>-0.7 && SumTwoMaxBjets<0.6186)'
     # selection_criteria = '( (Leading_Photon_pt/CMS_hgg_mass) > 1/3. && (Subleading_Photon_pt/CMS_hgg_mass) > 1/4. && Leading_Photon_MVA>-0.7 && Subleading_Photon_MVA>-0.7)'
-    selection_criteria = '( (leadptom) > 1/3. && (subleadptom) > 1/4. && leadmva>-0.9 && subleadmva>-0.9)'
+    # selection_criteria = '( (leadptom) > 1/3. && (subleadptom) > 1/4. && leadmva>-0.9 && subleadmva>-0.9)'
+    selection_criteria = ''
     # selection_criteria = '( (Leading_Photon_pt/CMS_hgg_mass) > 1/3. && (Subleading_Photon_pt/CMS_hgg_mass) > 1/4. && Leading_Photon_MVA>-0.7 && Subleading_Photon_MVA>-0.7 && New_pTBasedSel_WW_mass < 200)'
 
     # Load Variables from .json
@@ -894,13 +895,14 @@ def main():
         # print('{0:22} = {1:11}'.format('TTGsJetssum_weighted', TTGsJetssum_weighted))
         # print('{0:22} = {1:11}'.format('bbggsum_weighted ',bbggsum_weighted))
         print('{0:22} = {1:11}'.format('bckgsum_weighted', bckgsum_weighted))
-        print('New classweight: (HHsum_unweighted/HHsum_weighted) = ',(HHsum_unweighted/HHsum_weighted))
+        print('New classweight: (HHsum_unweighted/HHsum_weighted) = ',(HHsum_unweighted/HHsum_weighted) )
+        print('New classweight: (HHsum_unweighted/bckgsum_unweighted) = ',(HHsum_unweighted/bckgsum_unweighted))
         print('#---------------------------------------')
-        traindataset.loc[traindataset['process_ID']=='ggh', ['classweight']] = HHsum_unweighted/HHsum_weighted
+        traindataset.loc[traindataset['process_ID']=='ggh', ['classweight']] = (bckgsum_unweighted / HHsum_unweighted) * (bckgsum_weighted / HHsum_weighted)
         # traindataset.loc[traindataset['process_ID']=='Hgg', ['classweight']] = (HHsum_unweighted/bckgsum_weighted)
         # traindataset.loc[traindataset['process_ID']=='DiPhoton', ['classweight']] = (HHsum_unweighted/bckgsum_weighted)
-        traindataset.loc[traindataset['process_ID']=='QCD_pfff', ['classweight']] = (HHsum_unweighted/bckgsum_weighted)
-        traindataset.loc[traindataset['process_ID']=='QCD_pp', ['classweight']] = (HHsum_unweighted/bckgsum_weighted)
+        traindataset.loc[traindataset['process_ID']=='QCD_pfff', ['classweight']] = 1
+        traindataset.loc[traindataset['process_ID']=='QCD_pp', ['classweight']] = 1
         # traindataset.loc[traindataset['process_ID']=='TTGsJets', ['classweight']] = (HHsum_unweighted/bckgsum_weighted)
 
     if weights=='BalanceNonWeighted':
@@ -917,11 +919,11 @@ def main():
         print('bckgsum_unweighted= ', bckgsum_unweighted)
         print('#---------------------------------------')
 
-        traindataset.loc[traindataset['process_ID']=='ggh', ['classweight']] = 1.
+        traindataset.loc[traindataset['process_ID']=='ggh', ['classweight']] = (bckgsum_unweighted / HHsum_unweighted)*(bck)
         # traindataset.loc[traindataset['process_ID']=='Hgg', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
         # traindataset.loc[traindataset['process_ID']=='DiPhoton', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
-        traindataset.loc[traindataset['process_ID']=='QCD_pfff', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
-        traindataset.loc[traindataset['process_ID']=='QCD_pp', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
+        traindataset.loc[traindataset['process_ID']=='QCD_pfff', ['classweight']] = 1
+        traindataset.loc[traindataset['process_ID']=='QCD_pp', ['classweight']] = 1
         # traindataset.loc[traindataset['process_ID']=='TTGsJets', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
         # traindataset.loc[traindataset['process_ID']=='bbgg', ['classweight']] = (HHsum_unweighted/bckgsum_unweighted)
 
@@ -957,15 +959,20 @@ def main():
     train_df = data.iloc[:traindataset.shape[0]]
 
     # Event weights if wanted
-    train_weights = traindataset['weight'].values
-    test_weights = valdataset['weight'].values
+    # train_weights = traindataset['weight'].values
+    # test_weights = valdataset['weight'].values
 
     # Weights applied during training.
     if weights=='BalanceYields':
         trainingweights = traindataset.loc[:,'classweight']*traindataset.loc[:,'weight']*traindataset.loc[:,'weight_NLO_SM']
+        test_weights = valdataset.loc[:,'classweight']*valdataset.loc[:,'weight']*valdataset.loc[:,'weight_NLO_SM']
+
     if weights=='BalanceNonWeighted':
         trainingweights = traindataset.loc[:,'classweight']*traindataset.loc[:,'weight_NLO_SM']
     trainingweights = np.array(trainingweights)
+    # Event weights for overfitting plots
+    train_weights = trainingweights
+    test_weights = np.array(test_weights)
 
     ## Input Variable Correlation plot
     correlation_plot_file_name = 'correlation_plot'
@@ -1222,7 +1229,7 @@ def main():
     model_output_name = os.path.join(output_directory,'model.h5')
     model.save(model_output_name)
     weights_output_name = os.path.join(output_directory,'model_weights.h5')
-    model.save_weights(weights_output_name)
+    model.save_weig`hts(weights_output_name)
     model_json = model.to_json()
     model_json_name = os.path.join(output_directory,'model_serialised.json')
 
